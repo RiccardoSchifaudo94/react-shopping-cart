@@ -130,6 +130,12 @@ footer{
 }
 .cart-header{
   border-bottom: .1rem #c0c0c0 solid;
+  padding-bottom: 1.4rem;
+}
+.cart.cart-subtotal {
+  background: #f2f2f2;
+  display: flex;
+  justify-content: space-around;
 }
 .cart-items{
   padding: 0;
@@ -161,4 +167,21 @@ footer{
 }
 .total > div,.total > button{
   flex:1
+}
+/* checkout */ 
+form{width: 100%;}
+.form-container{
+  padding: 0;
+  list-style-type: none;
+  width: 100%;
+  background-color: #f2f2f2;
+}
+.form-container li{
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+}
+input{
+  padding: 1rem;
+  border: .1rem #c0c0c0 solid;
 }
