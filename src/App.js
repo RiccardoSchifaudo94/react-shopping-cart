@@ -41,16 +41,16 @@ class App extends Component{
     }); 
 
     if(!alreadyInCart){
-      cartItems.push({...product,count:1});
+      cartItems.push({...product,count:1,changeAmount:false});
     }
 
     this.setState({cartItems});
     localStorage.setItem("cartItems",JSON.stringify(cartItems));
 
-    //console.log(cartItems);
+    window.location.reload();
   }
 
-  sortProducts = (event) =>{
+   sortProducts = (event) =>{
 
     const sort = event.target.value;
 
@@ -98,6 +98,7 @@ class App extends Component{
     return (
       <div className="grid-container">
           <header>
+            <i className="fa fa-shopping-cart" style={{marginRight:"10px"}}></i>{" "}
             <a href="/">React Shopping Cart</a>
           </header>
           <main>
