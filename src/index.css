@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@import url('https://pro.fontawesome.com/releases/v5.10.0/css/all.css');
 
 html{
   font-size:62.5%;
@@ -9,7 +10,7 @@ body,#root{
   margin: 0;
 }
 body,input,select,textarea,button{
-  font-size:1.6rem;
+  font-size:1.4rem;
   font-family: Montserrat, Arial, Helvetica, sans-serif;
 }
 .grid-container{
