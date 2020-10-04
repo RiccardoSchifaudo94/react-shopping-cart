@@ -37,6 +37,7 @@ class App extends Component{
       if(item._id === product._id){
         item.count++;
         alreadyInCart = true;
+        window.location.reload();
       }
     }); 
 
@@ -47,7 +48,7 @@ class App extends Component{
     this.setState({cartItems});
     localStorage.setItem("cartItems",JSON.stringify(cartItems));
 
-    window.location.reload();
+    
   }
 
    sortProducts = (event) =>{
