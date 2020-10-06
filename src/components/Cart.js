@@ -49,7 +49,7 @@ export default class Cart extends Component {
         //console.log("cosa c'è dentro item: ");
         //console.log(item);
         //console.log("consa c'è dentro cart object:");
-        this.props.cartItems.map(cart_obj=>{
+        this.props.cartItems.map((cart_obj)=>{
            //console.log(cart_obj);
            if(cart_obj._id===item._id){
                //console.log("hai trovato il match a "+item._id);
@@ -108,7 +108,7 @@ export default class Cart extends Component {
                                                 {formatCurrency(item.price)} x <input type="number" name="count_value" min={1} defaultValue={item.count} onChange={(e)=>{item.count=Number(e.target.value); }}  readOnly={!item.changeAmount}></input>
                                                 { item.changeAmount 
                                                         ? ( <button className="button primary" type="submit" onClick={()=>this.saveAmount(item)}><i className="fa fa-save"></i> Save</button> )
-                                                        : ( <button className="button" onClick={()=>this.changeAmount(item)}><i class="fas fa-pencil"></i> Change</button> )
+                                                        : ( <button className="button" onClick={()=>this.changeAmount(item)}><i className="fas fa-pencil"></i> Change</button> )
                                                 }   
                                                 <button className="button" 
                                                         onClick={()=>this.props.removeFromCart(item)}>
