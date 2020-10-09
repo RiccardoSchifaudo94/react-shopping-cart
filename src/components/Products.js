@@ -77,8 +77,8 @@ class Products extends Component {
                                         <p>{product.description}</p>
                                         <p>
                                             Available Sizes:{" "}
-                                            {product.availableSizes.map(x=>(
-                                                <span>{" "}<button className="button">{x}</button></span>
+                                            {product.availableSizes.map((x,key)=>(
+                                                <span key={key}>{" "}<button className="button">{x}</button></span>
                                             ))}
                                         </p>
                                         <div className="product-price">
@@ -102,7 +102,7 @@ class Products extends Component {
 }
 
 
-export default connect((state)=>({products: state.products.items}),{
+export default connect((state)=>({products: state.products.filteredItems}),{
     fetchProducts
 })
 (Products);

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import data from './data.json';
+//import data from './data.json';
 import Products from './components/Products';
 import Filter from './components/Filter';
 import Cart from './components/Cart';
@@ -13,10 +13,10 @@ class App extends Component{
   constructor(){
     super();
     this.state = {
-      products: data.products,
+      //products: data.products,
       cartItems: localStorage.getItem("cartItems") ? JSON.parse(localStorage.getItem("cartItems")):[],
-      size:"",
-      sort: ""
+      //size:"",
+      //  sort: ""
     }
   }
 
@@ -54,7 +54,7 @@ class App extends Component{
     
   }
 
-   sortProducts = (event) =>{
+   /*sortProducts = (event) =>{
 
     const sort = event.target.value;
 
@@ -97,7 +97,7 @@ class App extends Component{
     }
 
   }
-  
+  */
   render(){
     return (
       <Provider store={store}>
@@ -109,17 +109,8 @@ class App extends Component{
           <main>
             <div className="content">
                 <div className="main">
-                  <Filter count = {this.state.products.length}
-                          size  = {this.state.size}
-                          sort  = {this.state.sort}
-                          filterProducts = {this.filterProducts}
-                          sortProducts   = {this.sortProducts}
-                  >
-                  </Filter>
-                  <Products products={this.state.products}
-                            addToCart={this.addToCart}
-                  >
-                  </Products>
+                  <Filter></Filter>
+                  <Products addToCart={this.addToCart}></Products>
                 </div>
                 <div className="sidebar">
                     <Cart cartItems={this.state.cartItems}
