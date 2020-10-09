@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import store from '../store';
 import {filterProducts,sortProducts,resetFilters} from '../actions/productActions';
 
 class Filter extends Component {
