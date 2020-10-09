@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {filterProducts,sortProducts} from '../actions/productActions';
+import store from '../store';
+import {filterProducts,sortProducts,resetFilters} from '../actions/productActions';
 
 class Filter extends Component {
+
     render() {
         return (
             !this.props.filteredProducts 
@@ -42,6 +44,7 @@ class Filter extends Component {
                                 <option value="XL">XL</option>
                                 <option value="XXL">XXL</option>
                             </select>
+                            <button className="button primary" onClick={this.props.resetFilters} style={{float:"right"}}><i className="fa fa-eraser"></i> Reset</button>
                         </div>
                     </div>
                 )
@@ -56,5 +59,6 @@ export default connect((state)=>({
     filteredProducts: state.products.filteredItems
 }),{
     filterProducts,
-    sortProducts
+    sortProducts,
+    resetFilters
 })(Filter);

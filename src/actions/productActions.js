@@ -1,4 +1,4 @@
-import { FETCH_PRODUCTS, FILTER_PRODUCT_BY_SIZE, ORDER_PRODUCTS_BY_PRICE } from "../types";
+import { FETCH_PRODUCTS, FILTER_PRODUCT_BY_SIZE, ORDER_PRODUCTS_BY_PRICE, RESET_FILTERS } from "../types";
 
 export const fetchProducts = () => async(dispatch) =>{
     const res = await fetch("/api/products");
@@ -46,5 +46,20 @@ export const sortProducts = (filteredProducts,sort) => (dispatch) =>{
             sort: sort, 
             items: sortedProducts
         }
+    })
+}
+
+export const resetFilters = () => async(dispatch)=>{
+    const res = await fetch("/api/products");
+    const data = await res.json();
+    console.log("call reset filters");
+    console.log(data);
+    dispatch({
+       type:RESET_FILTERS,
+       payload:{
+           sort:"",
+           size:"",
+           items: data
+       }
     })
 }
