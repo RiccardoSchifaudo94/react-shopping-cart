@@ -7,7 +7,7 @@ class Filter extends Component {
     render() {
         return (
             !this.props.filteredProducts 
-                ? (<div>Loading ...</div>)
+                ? (<div style={{marginLeft:"30px",marginTop:"20px"}}>Loading ...</div>)
                 : ( 
                     <div className="filter">
                         <div className="filter-result">
@@ -43,7 +43,7 @@ class Filter extends Component {
                                 <option value="XL">XL</option>
                                 <option value="XXL">XXL</option>
                             </select>
-                            <button className="button primary" onClick={this.props.resetFilters} style={{float:"right"}}><i className="fa fa-eraser"></i> Reset</button>
+                            <button className="button" onClick={this.props.resetFilters} style={{float:"right"}}><i className="fa fa-eraser"></i> Reset</button>
                         </div>
                     </div>
                 )
