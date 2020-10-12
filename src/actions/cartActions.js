@@ -2,7 +2,7 @@ import { ADD_TO_CART, REMOVE_FROM_CART } from "../types";
 import store from '../store';
 
 export const addToCart = (product) => (dispatch) => {
-    alert("add");
+    //alert("add");
     const cartItems = store.getState().cart.cartItems.slice();
     
     let alreadyExist = false;
@@ -30,7 +30,7 @@ export const addToCart = (product) => (dispatch) => {
 }
 
 export const removeFromCart = (product) => (dispatch) => {
-    alert("remove");
+    //alert("remove");
     console.log(product);
     const cartItems = store.getState()
         .cart.cartItems.slice()
