@@ -31,12 +31,12 @@ export const addToCart = (product) => (dispatch) => {
 
 export const removeFromCart = (product) => (dispatch) => {
     //alert("remove");
-    console.log(product);
+    //console.log(product);
     const cartItems = store.getState()
         .cart.cartItems.slice()
         .filter((x)=> x._id !== product._id);
-    console.log("cartItems");
-    console.log(cartItems);
+    //console.log("cartItems");
+    //console.log(cartItems);
     dispatch({
         type:REMOVE_FROM_CART,
         payload:{
