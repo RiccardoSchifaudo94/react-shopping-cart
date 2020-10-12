@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
 import formatCurrency from './../util';
 import Fade from 'react-reveal/Fade';
+import Modal from 'react-modal';
+import Zoom from 'react-reveal/Zoom';
 import { connect } from 'react-redux';
 import { removeFromCart } from '../actions/cartActions';
+import {clearOrder, createOrder} from '../actions/orderActions';
 
 class Cart extends Component {
     
@@ -25,10 +28,11 @@ class Cart extends Component {
         e.preventDefault();
         const order = {
             name: this.state.name,
-            email: this.state.address,
+            email: this.state.email,
             address : this.state.address,
-            cartItems : this.props.cartItems
-        }
+            cartItems : this.props.cartItems,
+            total: this.props.cartItems.reduce((a,c)=> a+c.price*c.count,0)
+        };
 
         this.props.createOrder(order);
     }
@@ -71,10 +75,14 @@ class Cart extends Component {
         localStorage.setItem("cartItems",JSON.stringify(this.state.cartItems));
         //console.log(this.state.cartItems);
     }
-  
+    
+    closeModal = () =>{
+        this.props.clearOrder();
+    }
+
     render() {
         
-        let {cartItems} = this.props;
+        let {cartItems, order} = this.props;
         //let  cartItems  = localStorage.getItem("cartItems")? JSON.parse(localStorage.getItem("cartItems")):this.props.cartItems;
         let num_sub_total = 0;
         //console.log("render =");
@@ -94,7 +102,50 @@ class Cart extends Component {
                                 </div>
                               )             
                     }
-                   
+                    {
+                        order && 
+                        <Modal isOpen={true} onRequestClose={this.closeModal}>
+                            <Zoom>
+                                <button className="close-modal" onClick={this.closeModal}>x</button>
+                                <div className="order-details">
+                                    <h3 className="success-message">Your order has been placed.</h3>
+                                    <h2>Order {order._id}</h2>
+                                    <ul>
+                                        <li>
+                                            <label>Name: </label>
+                                            <div>{ order.name }</div>
+                                        </li>
+                                        <li>
+                                            <label>Address: </label>
+                                            <div>{ order.address }</div>
+                                        </li>
+                                        <li>
+                                            <label>Date: </label>
+                                            <div>{ order.createdAt }</div>
+                                        </li>
+                                        <li>
+                                            <label>Email: </label>
+                                            <div>{ order.email }</div>
+                                        </li>
+                                        <li>
+                                            <label>Total: </label>
+                                            <div>{ formatCurrency(order.total) }</div>
+                                        </li>
+                                        <li>
+                                            <label>Cart Items: </label>
+                                            <div>
+                                                {   
+                                                    order.cartItems.map(x=>(
+                                                        <div>{x.count} {" x "} {x.title}</div>
+                                                    )) 
+                                                }
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </Zoom>
+                        </Modal>
+                    }
                     <div>
                         <div className="cart">
                             <Fade right cascade={true}>
@@ -190,8 +241,11 @@ class Cart extends Component {
 }
 
 export default connect((state)=>({
+    order: state.order.order,
     cartItems:state.cart.cartItems
 }),{
- removeFromCart
+ removeFromCart,
+ createOrder,
+ clearOrder
 }
 )(Cart)
