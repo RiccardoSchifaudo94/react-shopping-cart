@@ -10,7 +10,7 @@ import { Provider } from 'react-redux';
 
 class App extends Component{
   
-  constructor(){
+  /*constructor(){
     super();
     this.state = {
       //products: data.products,
@@ -18,9 +18,9 @@ class App extends Component{
       //size:"",
       //  sort: ""
     }
-  }
+  }*/
 
-  createOrder = (order) =>{
+  /*createOrder = (order) =>{
     alert("Need to save order for "+ order.name);
   }
 
@@ -52,7 +52,7 @@ class App extends Component{
     localStorage.setItem("cartItems",JSON.stringify(cartItems));
 
     
-  }
+  }*/
 
    /*sortProducts = (event) =>{
 
@@ -110,13 +110,10 @@ class App extends Component{
             <div className="content">
                 <div className="main">
                   <Filter></Filter>
-                  <Products addToCart={this.addToCart}></Products>
+                  <Products></Products>
                 </div>
                 <div className="sidebar">
-                    <Cart cartItems={this.state.cartItems}
-                          removeFromCart = {this.removeFromCart}
-                          createOrder = {this.createOrder}>
-                    </Cart>
+                    <Cart/>
                 </div>
             </div>
           </main>

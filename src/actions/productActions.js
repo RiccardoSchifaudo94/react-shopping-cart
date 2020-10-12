@@ -3,7 +3,7 @@ import { FETCH_PRODUCTS, FILTER_PRODUCT_BY_SIZE, ORDER_PRODUCTS_BY_PRICE, RESET_
 export const fetchProducts = () => async(dispatch) =>{
     const res = await fetch("/api/products");
     const data = await res.json();
-    console.log(data);
+    //console.log(data);
     
     dispatch({
         type: FETCH_PRODUCTS,
@@ -52,8 +52,8 @@ export const sortProducts = (filteredProducts,sort) => (dispatch) =>{
 export const resetFilters = () => async(dispatch)=>{
     const res = await fetch("/api/products");
     const data = await res.json();
-    console.log("call reset filters");
-    console.log(data);
+    //console.log("call reset filters");
+    //console.log(data);
     dispatch({
        type:RESET_FILTERS,
        payload:{

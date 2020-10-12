@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 import formatCurrency from './../util';
 import Fade from 'react-reveal/Fade';
+import { connect } from 'react-redux';
+import { removeFromCart } from '../actions/cartActions';
 
-export default class Cart extends Component {
+class Cart extends Component {
     
     constructor(props){
         super(props);
@@ -71,6 +73,7 @@ export default class Cart extends Component {
     }
   
     render() {
+        
         let {cartItems} = this.props;
         //let  cartItems  = localStorage.getItem("cartItems")? JSON.parse(localStorage.getItem("cartItems")):this.props.cartItems;
         let num_sub_total = 0;
@@ -96,7 +99,7 @@ export default class Cart extends Component {
                         <div className="cart">
                             <Fade right cascade={true}>
                             <ul className="cart-items">
-                                {cartItems.map((item,key)=>(
+                                {cartItems.map((item)=>(
                                     <li key={item._id}>
                                         <div>
                                             <img src={item.image} alt={item.title}></img>
@@ -111,7 +114,7 @@ export default class Cart extends Component {
                                                         : ( <button className="button" onClick={()=>this.changeAmount(item)}><i className="fas fa-pencil"></i> Change</button> )
                                                 }   
                                                 <button className="button" 
-                                                        onClick={()=>this.props.removeFromCart(item)}>
+                                                        onClick={()=>{this.props.removeFromCart(item)}}>
                                                             <i className="fa fa-times"></i>{" "}Remove
                                                 </button>
                                             </div>
@@ -185,3 +188,10 @@ export default class Cart extends Component {
         );
     }
 }
+
+export default connect((state)=>({
+    cartItems:state.cart.cartItems
+}),{
+ removeFromCart
+}
+)(Cart)
